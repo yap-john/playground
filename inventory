@@ -1,1 +1,1 @@
-aws-jenkins ansible_host=54.90.180.156 ansible_user=jyap ansible_ssh_pass=opswerks
+aws-jenkins ansible_host=54.90.248.55 ansible_user=jyap ansible_ssh_pass=opswerks
