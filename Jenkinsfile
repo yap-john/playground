@@ -11,7 +11,7 @@ pipeline {
                 // Checkout the Jenkins pipeline script
                 checkout([$class: 'GitSCM',
                           branches: [[name: '*/main']],
-                          userRemoteConfigs: [[url: 'https://github.com/your-org/your-repo.git']]])
+                          userRemoteConfigs: [[url: 'https://github.com/yap-john/playground.git']]])
             }
         }
 
@@ -20,7 +20,7 @@ pipeline {
                 // Checkout the Ansible playbook repository
                 checkout([$class: 'GitSCM',
                           branches: [[name: '*/main']],
-                          userRemoteConfigs: [[url: 'https://github.com/your-org/ansible-playbooks.git']]])
+                          userRemoteConfigs: [[url: 'https://github.com/yap-john/playground.git']]])
             }
         }
 
@@ -29,7 +29,7 @@ pipeline {
                 script {
                     // Run the Ansible playbook
                     sh '''
-                    ansible-playbook /path/to/your-playbook.yml
+                    ansible-playbook sample-playbook.yml
                     '''
                 }
             }
