@@ -9,7 +9,7 @@ pipeline {
         }
         stage('run playbook'){
             steps {
-                ansiblePlaybook inventory: 'inventory', playbook: 'sample-playbook'
+                ansiblePlaybook inventory: 'inventory', playbook: 'sample-playbook.yml'
             }
         }
     }
