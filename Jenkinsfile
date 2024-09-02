@@ -29,7 +29,7 @@ pipeline {
                 script {
                     // Run the Ansible playbook
                     sh '''
-                    ansible-playbook sample-playbook.yml
+                    ansible-playbook sample-playbook.yml -i inventory
                     '''
                 }
             }
