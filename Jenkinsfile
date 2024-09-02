@@ -6,24 +6,12 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Pipeline Script') {
+        stage('git clone'){
             steps {
-                // Checkout the Jenkins pipeline script
-                checkout([$class: 'GitSCM',
-                          branches: [[name: '*/main']],
-                          userRemoteConfigs: [[url: 'https://github.com/yap-john/playground.git']]])
+                sh "git clone https://github.com/yap-john/playground.git"
             }
         }
-
-        stage('Checkout Ansible Playbook') {
-            steps {
-                // Checkout the Ansible playbook repository
-                checkout([$class: 'GitSCM',
-                          branches: [[name: '*/main']],
-                          userRemoteConfigs: [[url: 'https://github.com/yap-john/playground.git']]])
-            }
-        }
-
+        
         stage('Run Ansible Playbook') {
             steps {
                 script {
