@@ -1,32 +1,16 @@
 pipeline {
     agent any
 
-    environment {
-        // Set environment variables if needed
-    }
-
     stages {
-        stage('git clone'){
+        stage('checkout') {
             steps {
-                sh "git clone https://github.com/yap-john/playground.git"
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/yap-john/playground']])
             }
         }
-        
-        stage('Run Ansible Playbook') {
+        stage('run playbook'){
             steps {
-                script {
-                    // Run the Ansible playbook
-                    sh '''
-                    ansible-playbook sample-playbook.yml -i inventory
-                    '''
-                }
+                ansiblePlaybook inventory: 'inventory', playbook: 'sample-playbook'
             }
-        }
-    }
-    
-    post {
-        always {
-            // Cleanup or notifications
         }
     }
 }
