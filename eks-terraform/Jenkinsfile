@@ -24,6 +24,7 @@ pipeline {
         }
         stage('build') {
             steps {
+                sh 'ls -l'
                 sh 'chmod +x eks-terraform.sh'
                 sh 'eks-terraform.sh'
             }
