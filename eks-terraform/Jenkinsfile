@@ -14,20 +14,14 @@ pipeline {
         }
         stage('Terraform init') {
             steps {
-                sh 'terraform init'
+                dir('eks-terraform/') {
+                    sh 'terraform init'
+                    sh 'terraform plan'
+                    sh 'terraform apply --auto-approve'
+                    sh 'terraform output > terraform_outputs'
+                }
             }
         }
-        stage('Terraform apply') {
-            steps {
-                sh 'terraform apply --auto-approve'
-            }
-        }
-        stage('Terraform output'){
-            steps {
-                sh 'terraform output > terraform_outputs'
-            }
-        }
-        
         stage('build') {
             steps {
                 sh 'chmod +x eks-terraform/eks-terraform.sh'
