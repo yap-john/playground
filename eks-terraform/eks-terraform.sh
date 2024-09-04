@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 #setup eks cluster
 
 terraform init > terraform_init.log 2>&1
