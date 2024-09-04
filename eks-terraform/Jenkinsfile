@@ -22,7 +22,7 @@ pipeline {
                 }
             }
         }
-        stage('build') {
+        stage('Configure worker nodes') {
             steps {
                 dir('eks-terraform/'){ 
                     sh 'ls -l'
