@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+    }
+    
+    stages {
+        stage('checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/yap-john/playground.git']])
+            }
+        }
+        
+        stage('build') {
+            steps {
+                sh 'chmod +x eks-terraform/eks-terraform.sh'
+                sh 'eks-terraform/eks-terraform.sh'
+            }
+        }
+        
+    }
+}
