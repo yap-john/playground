@@ -1,17 +1,20 @@
 #!/bin/bash
 
-#setup eks cluster
+# Echo start
+echo "Starting EKS cluster setup"
 
+# Setup EKS cluster
+echo "Running terraform init"
 terraform init > terraform_init.log 2>&1
-terraform plan > terraform_init.log 2>&1
-terraform apply --auto-approve > terraform_init.log 2>&1
+echo "Running terraform plan"
+terraform plan > terraform_plan.log 2>&1
+echo "Running terraform apply"
+terraform apply --auto-approve > terraform_apply.log 2>&1
+echo "Terraform output"
 terraform output > terraform_outputs
 
-#setup connection between worker nodes
-#prereq
-#needs aws cli, export access keys, kubectl on jenkins docker container(?)
-
-#variables
+# Setup connection between worker nodes
+echo "Setting up AWS CLI and kubectl"
 eksClusterName=demo-eks
 instanceRole=$(grep -rnw terraform_outputs -e NodeInstanceRole | cut -d '"' -f2)
 configMapFile=aws-auth-cm.yaml
@@ -21,5 +24,4 @@ curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/
 sed -i "s|rolearn: .*|rolearn: $instanceRole|" $configMapFile
 kubectl apply -f $configMapFile
 
-#show output
-#kubectl get nodes -o wide
+echo "Script execution completed"
