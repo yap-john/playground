@@ -25,7 +25,6 @@ pipeline {
         stage('Configure worker nodes') {
             steps {
                 dir('eks-terraform/'){ 
-                    sh 'ls -l'
                     sh 'chmod +x ./eks-terraform.sh'
                     sh './eks-terraform.sh'
                 }
