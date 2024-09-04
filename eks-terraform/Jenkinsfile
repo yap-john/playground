@@ -24,8 +24,8 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh 'chmod +x eks-terraform/eks-terraform.sh'
-                sh 'eks-terraform/eks-terraform.sh'
+                sh 'chmod +x eks-terraform.sh'
+                sh 'eks-terraform.sh'
             }
         }
         
