@@ -1,18 +1,6 @@
 #!/bin/bash
 
 # Echo start
-echo "Starting EKS cluster setup"
-
-# Setup EKS cluster
-echo "Running terraform init"
-terraform init > terraform_init.log 2>&1
-echo "Running terraform plan"
-terraform plan > terraform_plan.log 2>&1
-echo "Running terraform apply"
-terraform apply --auto-approve > terraform_apply.log 2>&1
-echo "Terraform output"
-terraform output > terraform_outputs
-
 # Setup connection between worker nodes
 echo "Setting up AWS CLI and kubectl"
 eksClusterName=demo-eks
