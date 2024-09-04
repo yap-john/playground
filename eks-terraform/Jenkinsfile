@@ -22,6 +22,12 @@ pipeline {
                 sh 'terraform apply --auto-approve'
             }
         }
+        stage('Terraform output'){
+            steps {
+                sh 'terraform output > terraform_outputs'
+            }
+        }
+        
         stage('build') {
             steps {
                 sh 'chmod +x eks-terraform/eks-terraform.sh'
