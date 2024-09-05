@@ -8,7 +8,7 @@
 data "aws_vpc" "terra_vpc" {
   filter {
     name   = "tag:Name"
-    values = ["terra-vpc"]
+    values = ["vpc-vpc-01"]
   }
 }
 
