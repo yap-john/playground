@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: alb-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "alb"
+spec:
+  selector:
+    app: nginx-deploy #edit to the label of deployment
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
