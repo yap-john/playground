@@ -54,6 +54,6 @@ resource "aws_eks_cluster" "demo_eks" {
   ]
 }
 
-data "aws_eks_cluster" "deme_eks" {
+data "aws_eks_cluster" "demo_eks" {
   name = aws_eks_cluster.demo_eks.name
 }
