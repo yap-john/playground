@@ -1,19 +1,18 @@
 #!/bin/bash
-#
+
 echo "Setting up worker nodes connection"
 
 # Variables
+#eksClusterName=$(terraform output -raw eks_cluster_name) <- if added in terraform output
 eksClusterName=demo-eks
 #instanceRole=$(grep -rnw terraform_outputs -e NodeInstanceRole | cut -d '"' -f2)
 instanceRole=$(terraform output -raw NodeInstanceRole)
-
-echo "show instance role from terra output $instanceRole"
-
 configMapFile=aws-auth-cm.yaml
+region='us-east-1'
 #albsvcFile=alb-svc.yaml
 
 # Config for kubectl access
- aws eks update-kubeconfig --region us-east-1 --name $eksClusterName
+ aws eks update-kubeconfig --region $region --name $eksClusterName
 
 # Configmap for eks
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/$configMapFile
