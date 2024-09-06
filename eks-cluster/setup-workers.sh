@@ -10,7 +10,7 @@ instanceRole=$(terraform output -raw NodeInstanceRole)
 echo "show instance role from terra output $instanceRole"
 
 configMapFile=aws-auth-cm.yaml
-albsvcFile=alb-svc.yaml
+#albsvcFile=alb-svc.yaml
 
 # Config for kubectl access
  aws eks update-kubeconfig --region us-east-1 --name $eksClusterName
@@ -21,6 +21,6 @@ sed -i "s|rolearn: .*|rolearn: $instanceRole|" $configMapFile
 kubectl apply -f $configMapFile
 
 # Setup load balancer for web-app 
-kubectl apply -f $albsvcFile
+#kubectl apply -f $albsvcFile
 
 echo "Script execution completed"
