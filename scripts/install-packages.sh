@@ -31,3 +31,5 @@ unzip "awscliv2.zip"
 
 #install git
 sudo yum install -y git
+
+#install helm
