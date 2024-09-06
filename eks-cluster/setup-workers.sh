@@ -22,5 +22,3 @@ kubectl apply -f $configMapFile
 
 # Setup load balancer for web-app 
 #kubectl apply -f $albsvcFile
-
-echo "Script execution completed"
