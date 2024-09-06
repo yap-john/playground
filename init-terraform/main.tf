@@ -1,7 +1,5 @@
 #credentials
 #create user first then generate access keys
-#export AWS_ACCESS_KEY_ID="AKIAQ3EGP5IPDGLIEDHU"
-#export AWS_SECRET_ACCESS_KEY="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"
 
 # Specify the provider and region
 provider "aws" {
