@@ -6,6 +6,13 @@
 #read git_user
 #echo "enter git pass"
 #read git_pass
+#echo "enter access key id"
+#read access_key
+#echo "enter secret access key"
+#read secret_key
+#export AWS_ACCESS_KEY_ID=$access_key
+#export AWS_SECRET_ACCESS_KEY=$secret_key
+
 #git_url="https://$git_user:$git_pass@github.com/opswerks/capstone-iaac.git"
 
 git_url='https://github.com/yap-john/playground.git'
