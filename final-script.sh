@@ -15,18 +15,17 @@ git_folder=$(echo $git_url | rev | cut -d "/" -f1 | rev | cut -d "." -f1)
 repo_dir="$(pwd)/$git_folder"
 
 #resource paths
-eks_path="$repo_dir/eks-terraform/"
-script_path="$repo_dir/scripts/"
-yaml_path="$repo_dir/yaml/"
-
-echo $eks_path $script_path $yaml_path
+eks_path="$repo_dir/eks-cluster"
+init_terra_path="$repo_dir/init-terraform"
+package_path="$repo_dir/packages"
+app_path="$repo_dir/web-app"
 
 #scriptfiles
-install_packages_script='install-packages.sh'
-terraform_init='terraform.sh'
-terraform_eks='terraform-eks.sh'
-setup_workers='setup-workers.sh'
-deploy_apps='deploy-apps.sh'
+install_packages_script="$package_path/install-packages.sh"
+terraform_init="$init_terra_path/terraform.sh"
+terraform_eks="$eks_path/terraform-eks.sh"
+setup_workers="$eks_path/setup-workers.sh"
+deploy_apps="$app_path/deploy-apps.sh"
 
 #echo $git_folder
 ##clone branch containing the scripts
@@ -57,7 +56,6 @@ fi
 run_script() {
     local script_name="$1"
     echo "Running $script_name..."
-    cd "$script_path" || exit 1
     sh "$script_name"
 }
 
