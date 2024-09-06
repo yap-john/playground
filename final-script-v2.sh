@@ -23,10 +23,6 @@ terraform_init="$init_terra_path/terraform.sh"
 terraform_eks="$eks_path/terraform-eks.sh"
 deploy_apps="$app_path/deploy-apps.sh"
 
-# Clone branch containing the scripts
-#git clone --branch $branch_name $git_url
-git clone $git_url
-
 echo "-----Initiating script run-----"
 
 echo "Options"
@@ -38,6 +34,10 @@ echo "5) Deploy webapps"
 
 echo "Choose a script to run (1-6)"
 read user_input
+
+# Clone branch containing the scripts
+#git clone --branch $branch_name $git_url
+git clone $git_url
 
 # Function to change directory, run a script, and return
 run_script() {
