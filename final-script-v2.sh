@@ -21,7 +21,6 @@ app_path="$repo_dir/web-app"
 install_packages_script="$package_path/install-packages.sh"
 terraform_init="$init_terra_path/terraform.sh"
 terraform_eks="$eks_path/terraform-eks.sh"
-setup_workers="$eks_path/setup-workers.sh"
 deploy_apps="$app_path/deploy-apps.sh"
 
 # Clone branch containing the scripts
@@ -34,8 +33,7 @@ echo "1) Run the whole script"
 echo "2) Install required packages"
 echo "3) Run terraform for infrastructure provisioning"
 echo "4) Run terraform for EKS cluster"
-echo "5) Setup worker nodes connection"
-echo "6) Deploy webapps"
+echo "5) Deploy webapps"
 
 echo "Choose a script to run (1-6)"
 read user_input
@@ -57,7 +55,6 @@ run_all_scripts() {
     run_script "$install_packages_script" "$package_path"
     run_script "$terraform_init" "$init_terra_path"
     run_script "$terraform_eks" "$eks_path"
-    run_script "$setup_workers" "$eks_path"
     run_script "$deploy_apps" "$app_path"
 }
 
@@ -80,10 +77,6 @@ case "$user_input" in
         run_script "$terraform_eks" "$eks_path"
         ;;
     5)
-        echo "----- Setting up connection for the worker nodes"
-        run_script "$setup_workers" "$eks_path"
-        ;;
-    6)
         echo "----- Deploying web applications"
         run_script "$deploy_apps" "$app_path"
         ;;
