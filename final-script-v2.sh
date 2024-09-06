@@ -24,7 +24,8 @@ terraform_eks="$eks_path/terraform-eks.sh"
 deploy_apps="$app_path/deploy-apps.sh"
 
 # Clone branch containing the scripts
-git clone --branch $branch_name $git_url
+#git clone --branch $branch_name $git_url
+git clone $git_url
 
 echo "-----Initiating script run-----"
 
