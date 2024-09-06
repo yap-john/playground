@@ -7,7 +7,8 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-type: "alb"
 spec:
   selector:
-    app: nginx-deploy #edit to the label of deployment
+    name: webapp-pod
+    type: front-end #edit to the label of deployment
   ports:
     - protocol: TCP
       port: 80

@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capstone-front
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: webapp-pod
+      type: front-end
+  template:
+    metadata:
+      labels:
+        name: webapp-pod
+        type: front-end
+    spec:
+      containers:
+      - image: bihulolo/capstone-webapp:v1
+        imagePullPolicy: Always
+        name: capstone-frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capstone-back
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: webapp-pod
+      type: back-end
+  template:
+    metadata:
+      labels:
+        name: webapp-pod
+        type: back-end
+    spec:
+      containers:
+      - image: bihulolo/capstone-backend:v1
+        imagePullPolicy: Always
+        name: capstone-backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mycapstone-service
+spec:
+  type: NodePort
+  selector:
+    name: webapp-pod
+    type: front-end
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30007

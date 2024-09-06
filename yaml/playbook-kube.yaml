@@ -1,0 +1,19 @@
+--- 
+- name: Update web servers
+  hosts: kube
+  tasks:
+    - name: test kube
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Pod
+          metadata: 
+            name: webapp-pod
+            namespace: default
+          labels:
+            name: webapp-pod
+          spec:
+            containers:
+              - name: webapp
+                image: kodekloud/simple-webapp-mysql
